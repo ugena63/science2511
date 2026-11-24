@@ -17,10 +17,8 @@
 
         body {
             background: linear-gradient(135deg, #f0f4ff 0%, #e6eefc 50%, #fdf2f8 100%);
-            height: 100vh;
-            height: 100dvh;
-            overflow: hidden;
-            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
         /* Animaciones suaves para transiciones de tarjetas y feedback */
@@ -69,40 +67,28 @@
             background-color: #cbd5e1;
             border-radius: 9999px;
         }
-
-        /* Ajustes de máxima compacidad en pantallas con poca altura */
-        @media (max-height: 700px) {
-            .compact-q-text {
-                font-size: 0.9rem !important;
-                line-height: 1.25 !important;
-            }
-            .compact-opt {
-                padding-top: 0.45rem !important;
-                padding-bottom: 0.45rem !important;
-            }
-        }
     </style>
 </head>
-<body class="text-slate-800 flex flex-col items-center justify-between h-[100dvh] overflow-hidden p-2 sm:p-4">
+<body class="text-slate-800 flex flex-col items-center justify-between min-h-screen p-3 sm:p-6">
 
-    <!-- Contenedor Principal Centrado (100dvh sin scroll vertical) -->
-    <div class="w-full max-w-xl mx-auto flex flex-col justify-between h-full overflow-hidden">
+    <!-- Contenedor Principal Centrado (Ideal para móvil y escritorio) -->
+    <div class="w-full max-w-xl mx-auto flex flex-col flex-grow">
 
-        <!-- Cabecera Superior Fija Compacta -->
-        <header class="shrink-0 w-full flex items-center justify-between bg-white/90 backdrop-blur-md border border-white/60 shadow-xs rounded-xl px-3 py-2 mb-2">
+        <!-- Cabecera Superior Fija -->
+        <header class="w-full flex items-center justify-between bg-white/85 backdrop-blur-md border border-white/60 shadow-sm rounded-2xl px-4 py-3 mb-4">
             <button id="btn-home" onclick="goHome()" class="flex items-center gap-2 text-left focus:outline-none group">
-                <div class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-extrabold text-sm shadow-xs group-hover:bg-indigo-700 transition">
+                <div class="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-extrabold text-lg shadow-sm group-hover:bg-indigo-700 transition">
                     🇪🇸
                 </div>
-                <div class="flex items-baseline gap-1.5">
-                    <h1 class="text-sm font-extrabold text-slate-900 leading-none">Suerte Enano! Examen 25/11 de Science</h1>
-                    <span class="text-[11px] font-medium text-slate-500 leading-none">1875–1975</span>
+                <div>
+                    <h1 class="text-sm sm:text-base font-extrabold text-slate-900 leading-tight">Suerte Enano - Examen Science 25/11</h1>
+                    <p class="text-[11px] font-medium text-slate-500 leading-tight">España: 1875 – 1975</p>
                 </div>
             </button>
 
-            <div class="flex items-center gap-1.5">
+            <div class="flex items-center gap-2">
                 <!-- Botón de Chuleta Rápida -->
-                <button onclick="toggleCheatSheet(true)" class="btn-press flex items-center gap-1 bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300/70 font-bold text-xs px-2.5 py-1.5 rounded-lg shadow-2xs">
+                <button onclick="toggleCheatSheet(true)" class="btn-press flex items-center gap-1.5 bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300/70 font-semibold text-xs sm:text-sm px-3 py-2 rounded-xl shadow-xs">
                     <span>📖</span>
                     <span>Chuleta</span>
                 </button>
@@ -110,218 +96,213 @@
         </header>
 
         <!-- =========================================================
-             PANTALLA 1: MENÚ DE INICIO Y CONFIGURACIÓN COMPACTA
+             PANTALLA 1: MENÚ DE INICIO Y CONFIGURACIÓN
         ========================================================== -->
-        <main id="screen-home" class="animate-slide-up flex-1 min-h-0 flex flex-col justify-between gap-2">
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-3.5 sm:p-4 flex-1 min-h-0 flex flex-col justify-between overflow-hidden">
-                <div>
-                    <div class="flex items-center justify-between gap-2 mb-1">
-                        <h2 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight leading-tight">
-                            Test Historia de España
-                        </h2>
-                        <span class="shrink-0 px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 text-[10px] font-bold">
-                            🎯 30 Preguntas
-                        </span>
-                    </div>
-                    <p class="text-[11px] text-slate-500 leading-tight mb-2.5">
-                        Restauración, II República, Guerra Civil, Franquismo y Arte Moderno.
-                    </p>
+        <main id="screen-home" class="animate-slide-up flex-grow flex flex-col justify-between gap-4">
+            <div class="bg-white rounded-3xl shadow-md border border-slate-100 p-5 sm:p-6">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold mb-3">
+                    <span>🎯</span>
+                    <span>Preparación de Examen · 30 Preguntas</span>
                 </div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
+                    Preguntas:
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                    Repasa el examen de 25/11
+                </p>
 
-                <!-- Paso 1: Elegir Idioma (Horizontal compacto) -->
-                <div class="mb-2">
-                    <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
-                        1. Idioma
+                <!-- Paso 1: Elegir Idioma -->
+                <div class="mb-5">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                        1. Elige el modo de idioma
                     </label>
-                    <div class="grid grid-cols-2 gap-1.5">
-                        <button id="lang-bilingual" onclick="selectLang('bilingual')" class="btn-press text-left px-2.5 py-2 rounded-xl border-2 border-indigo-600 bg-indigo-50/70 transition">
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-xs text-indigo-950">🇬🇧+🇪🇸 Bilingüe</span>
-                                <span class="w-3.5 h-3.5 rounded-full bg-indigo-600 flex items-center justify-center text-white text-[9px]">✓</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <button id="lang-bilingual" onclick="selectLang('bilingual')" class="btn-press text-left p-3.5 rounded-2xl border-2 border-indigo-600 bg-indigo-50/70 transition">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-bold text-sm text-indigo-950">🇬🇧 + 🇪🇸 Bilingüe</span>
+                                <span class="w-4 h-4 rounded-full bg-indigo-600 flex items-center justify-center text-white text-[10px]">✓</span>
                             </div>
-                            <p class="text-[10px] text-slate-600 leading-tight mt-0.5">Test EN + ayuda ES</p>
+                            <p class="text-xs text-slate-600">Preguntas en inglés (como el libro) + explicación en español.</p>
                         </button>
 
-                        <button id="lang-es" onclick="selectLang('es')" class="btn-press text-left px-2.5 py-2 rounded-xl border-2 border-slate-200 bg-white hover:border-slate-300 transition">
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-xs text-slate-800">🇪🇸 Español</span>
-                                <span class="w-3.5 h-3.5 rounded-full border border-slate-300"></span>
+                        <button id="lang-es" onclick="selectLang('es')" class="btn-press text-left p-3.5 rounded-2xl border-2 border-slate-200 bg-white hover:border-slate-300 transition">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-bold text-sm text-slate-800">🇪🇸 Solo Castellano</span>
+                                <span class="w-4 h-4 rounded-full border border-slate-300"></span>
                             </div>
-                            <p class="text-[10px] text-slate-500 leading-tight mt-0.5">Todo en castellano</p>
+                            <p class="text-xs text-slate-500">Todo el test y las respuestas traducidas al español.</p>
                         </button>
                     </div>
                 </div>
 
-                <!-- Paso 2: Elegir Modo de Juego -->
-                <div class="mb-2">
-                    <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+                <!-- Paso 2: Elegir Modo de Juego (Vidas o Práctica) -->
+                <div class="mb-5">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
                         2. Modo de reto
                     </label>
-                    <div class="grid grid-cols-2 gap-1.5">
-                        <button id="mode-practice" onclick="selectGameMode('practice')" class="btn-press px-2.5 py-1.5 rounded-xl border-2 border-indigo-600 bg-indigo-50/70 text-left flex items-center justify-between">
-                            <div>
-                                <div class="font-bold text-xs text-indigo-950">♾️ Repaso</div>
-                                <div class="text-[10px] text-slate-600 leading-none">Sin límite</div>
-                            </div>
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <button id="mode-practice" onclick="selectGameMode('practice')" class="btn-press p-3 rounded-2xl border-2 border-indigo-600 bg-indigo-50/70 text-left">
+                            <div class="font-bold text-xs sm:text-sm text-indigo-950">♾️ Modo Repaso</div>
+                            <div class="text-[11px] text-slate-600 mt-0.5">Sin límite de fallos</div>
                         </button>
-                        <button id="mode-survival" onclick="selectGameMode('survival')" class="btn-press px-2.5 py-1.5 rounded-xl border-2 border-slate-200 bg-white text-left flex items-center justify-between">
-                            <div>
-                                <div class="font-bold text-xs text-slate-800">❤️ 3 Vidas</div>
-                                <div class="text-[10px] text-slate-500 leading-none">Máx. 3 fallos</div>
-                            </div>
+                        <button id="mode-survival" onclick="selectGameMode('survival')" class="btn-press p-3 rounded-2xl border-2 border-slate-200 bg-white text-left">
+                            <div class="font-bold text-xs sm:text-sm text-slate-800">❤️ 3 Vidas</div>
+                            <div class="text-[11px] text-slate-500 mt-0.5">Si fallas 3, ¡game over!</div>
                         </button>
                     </div>
                 </div>
 
-                <!-- Paso 3: Elegir Tema (Grid compacto de 2 columnas) -->
-                <div class="flex-1 min-h-0 flex flex-col justify-center">
-                    <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
-                        3. Bloque temático
+                <!-- Paso 3: Elegir Tema -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                        3. Selecciona qué quieres repasar
                     </label>
-                    <div id="topic-list" class="grid grid-cols-2 gap-1.5">
+                    <div id="topic-list" class="flex flex-col gap-2">
                         <!-- Se rellena dinámicamente desde JS -->
                     </div>
                 </div>
             </div>
 
             <!-- Botón Principal de Inicio -->
-            <button onclick="startQuiz()" class="shrink-0 btn-press w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm sm:text-base shadow-md shadow-indigo-600/20 flex items-center justify-center gap-2">
+            <button onclick="startQuiz()" class="btn-press w-full py-4 px-6 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-base sm:text-lg shadow-lg shadow-indigo-600/25 flex items-center justify-center gap-2">
                 <span>🚀</span>
-                <span id="start-btn-text">Empezar Test (30 preguntas)</span>
+                <span id="start-btn-text">Empezar Test Completo (30 preguntas)</span>
             </button>
         </main>
 
         <!-- =========================================================
-             PANTALLA 2: ÁREA DE JUEGO ULTRA-COMPACTA (SIN SCROLL)
+             PANTALLA 2: ÁREA DE JUEGO (PREGUNTAS)
         ========================================================== -->
-        <section id="screen-quiz" class="hidden flex-1 min-h-0 flex flex-col justify-between gap-2">
-            <!-- Barra de estado superior de una sola línea -->
-            <div class="shrink-0 bg-white rounded-xl px-3 py-2 shadow-xs border border-slate-100">
-                <div class="flex items-center justify-between text-[11px] font-bold mb-1.5">
-                    <span id="quiz-counter" class="text-slate-700 bg-slate-100 px-2 py-0.5 rounded-md">1 / 30</span>
+        <section id="screen-quiz" class="hidden flex-grow flex flex-col justify-between gap-3">
+            <!-- Barra de estado superior (Progreso, Vidas, Racha, Puntos) -->
+            <div class="bg-white rounded-2xl p-3.5 shadow-sm border border-slate-100">
+                <div class="flex items-center justify-between text-xs font-bold mb-2">
+                    <span id="quiz-counter" class="text-slate-600 bg-slate-100 px-2.5 py-1 rounded-lg">Pregunta 1 / 30</span>
                     
-                    <div class="flex items-center gap-1.5">
-                        <span id="lives-badge" class="hidden text-rose-600 bg-rose-50 px-2 py-0.5 rounded-md">❤️❤️❤️</span>
-                        <span id="streak-badge" class="text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md">🔥 0</span>
-                        <span id="score-badge" class="text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md">⭐ 0</span>
+                    <div class="flex items-center gap-2">
+                        <span id="lives-badge" class="hidden text-rose-600 bg-rose-50 px-2.5 py-1 rounded-lg">❤️❤️❤️</span>
+                        <span id="streak-badge" class="text-amber-600 bg-amber-50 px-2.5 py-1 rounded-lg">🔥 Racha: 0</span>
+                        <span id="score-badge" class="text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-lg">⭐ 0 pts</span>
                     </div>
                 </div>
-                <!-- Barra de progreso fina -->
-                <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                <!-- Barra de progreso visual -->
+                <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
                     <div id="progress-bar" class="h-full bg-indigo-600 rounded-full transition-all duration-300" style="width: 3%"></div>
                 </div>
             </div>
 
             <!-- Tarjeta de Pregunta y Opciones -->
-            <div id="question-card" class="bg-white rounded-2xl shadow-sm border border-slate-100 px-3 py-2.5 sm:p-4 flex-1 min-h-0 flex flex-col justify-between overflow-hidden animate-slide-up">
-                <div class="flex-1 min-h-0 flex flex-col justify-center">
+            <div id="question-card" class="bg-white rounded-3xl shadow-md border border-slate-100 p-5 sm:p-6 flex-grow flex flex-col justify-between animate-slide-up">
+                <div>
                     <!-- Etiqueta del bloque temático -->
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span id="question-topic-badge" class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-purple-100 text-purple-800">
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span id="question-topic-badge" class="inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-purple-100 text-purple-800">
                             Tema
                         </span>
-                        <span id="lang-indicator" class="text-[10px] font-semibold text-slate-400">
+                        <span id="lang-indicator" class="text-[11px] font-semibold text-slate-400">
                             🇬🇧 EN → 🇪🇸 ES
                         </span>
                     </div>
 
-                    <!-- Texto de la pregunta compacto -->
-                    <h3 id="question-text" class="compact-q-text text-[0.95rem] sm:text-lg font-extrabold text-slate-900 leading-[1.3] mb-2.5">
+                    <!-- Texto de la pregunta -->
+                    <h3 id="question-text" class="text-lg sm:text-xl font-extrabold text-slate-900 leading-snug mb-5">
                         Cargando pregunta...
                     </h3>
 
-                    <!-- Contenedor de Opciones Táctiles Compactas -->
-                    <div id="options-container" class="flex flex-col gap-[6px]">
+                    <!-- Contenedor de Opciones Táctiles -->
+                    <div id="options-container" class="flex flex-col gap-3">
                         <!-- Opciones generadas dinámicamente -->
                     </div>
                 </div>
 
-                <!-- Caja de Explicación / Feedback compacta (scroll interno solo si el texto es largo) -->
-                <div id="feedback-box" class="hidden shrink-0 mt-2 rounded-xl px-3 py-2 border transition-all max-h-24 overflow-y-auto custom-scroll">
-                    <div class="flex items-center gap-1.5 font-extrabold text-xs mb-0.5" id="feedback-title">
-                        <!-- Título dinámico -->
+                <!-- Caja de Explicación / Feedback (Oculta hasta responder) -->
+                <div id="feedback-box" class="hidden mt-5 rounded-2xl p-4 border-2 transition-all">
+                    <div class="flex items-center gap-2 font-extrabold text-sm sm:text-base mb-1" id="feedback-title">
+                        <!-- Título dinámico: ¡Correcto! o ¡Ups! -->
                     </div>
-                    <p id="feedback-explanation" class="text-[11px] sm:text-xs leading-snug text-slate-700">
+                    <p id="feedback-explanation" class="text-xs sm:text-sm leading-relaxed text-slate-700">
                         <!-- Explicación pedagógica en español -->
                     </p>
                 </div>
             </div>
 
-            <!-- Botón Siguiente Pregunta fijo al pie -->
-            <button id="btn-next" onclick="nextQuestion()" class="hidden shrink-0 btn-press w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-sm shadow-md flex items-center justify-center gap-2">
+            <!-- Botón Siguiente Pregunta (Aparece al responder) -->
+            <button id="btn-next" onclick="nextQuestion()" class="hidden btn-press w-full py-4 px-6 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-base shadow-lg flex items-center justify-center gap-2">
                 <span id="btn-next-text">Siguiente pregunta</span>
                 <span>➡️</span>
             </button>
         </section>
 
         <!-- =========================================================
-             PANTALLA 3: RESULTADOS FINALES Y REPASO DE FALLOS COMPACTA
+             PANTALLA 3: RESULTADOS FINALES Y REPASO DE FALLOS
         ========================================================== -->
-        <section id="screen-results" class="hidden animate-slide-up flex-1 min-h-0 flex flex-col justify-between gap-2">
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-3.5 sm:p-5 text-center flex-1 min-h-0 flex flex-col justify-between overflow-hidden">
-                <div class="shrink-0">
-                    <div class="flex items-center justify-center gap-2 mb-1">
-                        <span id="result-emoji" class="text-3xl">🏆</span>
-                        <h2 id="result-title" class="text-lg sm:text-2xl font-extrabold text-slate-900">
-                            ¡Test Completado!
-                        </h2>
-                    </div>
-                    <p id="result-subtitle" class="text-xs text-slate-500 mb-2.5">
-                        Buen trabajo repasando la historia de España.
-                    </p>
+        <section id="screen-results" class="hidden animate-slide-up flex-grow flex flex-col justify-between gap-4">
+            <div class="bg-white rounded-3xl shadow-md border border-slate-100 p-6 text-center">
+                <div id="result-emoji" class="text-5xl sm:text-6xl mb-3">🏆</div>
+                <h2 id="result-title" class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-1">
+                    ¡Test Completado!
+                </h2>
+                <p id="result-subtitle" class="text-sm text-slate-500 mb-5">
+                    Buen trabajo repasando la historia de España.
+                </p>
 
-                    <!-- Nota y estadísticas en fila compacta -->
-                    <div class="grid grid-cols-4 gap-1.5 text-center mb-2">
-                        <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-2">
-                            <div id="result-grade" class="text-lg sm:text-xl font-extrabold text-indigo-700">8.5</div>
-                            <div class="text-[10px] font-bold text-indigo-500">Nota /10</div>
-                        </div>
-                        <div class="bg-emerald-50 rounded-xl p-2 border border-emerald-100">
-                            <div id="stat-correct" class="text-lg sm:text-xl font-extrabold text-emerald-700">0</div>
-                            <div class="text-[10px] font-semibold text-emerald-600">Aciertos</div>
-                        </div>
-                        <div class="bg-rose-50 rounded-xl p-2 border border-rose-100">
-                            <div id="stat-wrong" class="text-lg sm:text-xl font-extrabold text-rose-700">0</div>
-                            <div class="text-[10px] font-semibold text-rose-600">Fallos</div>
-                        </div>
-                        <div class="bg-amber-50 rounded-xl p-2 border border-amber-100">
-                            <div id="stat-streak" class="text-lg sm:text-xl font-extrabold text-amber-700">0</div>
-                            <div class="text-[10px] font-semibold text-amber-600">Racha</div>
-                        </div>
+                <!-- Nota sobre 10 destacada -->
+                <div class="inline-flex flex-col items-center justify-center bg-indigo-50 border-2 border-indigo-100 rounded-3xl px-8 py-4 mb-5">
+                    <span class="text-xs font-bold uppercase tracking-wider text-indigo-500">Tu nota final</span>
+                    <span id="result-grade" class="text-4xl sm:text-5xl font-extrabold text-indigo-700 my-1">8.5</span>
+                    <span class="text-xs font-semibold text-slate-500">sobre 10</span>
+                </div>
+
+                <!-- Estadísticas rápidas -->
+                <div class="grid grid-cols-3 gap-2 text-center mb-4">
+                    <div class="bg-emerald-50 rounded-2xl p-3 border border-emerald-100">
+                        <div id="stat-correct" class="text-xl font-extrabold text-emerald-700">0</div>
+                        <div class="text-[11px] font-semibold text-emerald-600">Aciertos</div>
+                    </div>
+                    <div class="bg-rose-50 rounded-2xl p-3 border border-rose-100">
+                        <div id="stat-wrong" class="text-xl font-extrabold text-rose-700">0</div>
+                        <div class="text-[11px] font-semibold text-rose-600">Fallos</div>
+                    </div>
+                    <div class="bg-amber-50 rounded-2xl p-3 border border-amber-100">
+                        <div id="stat-streak" class="text-xl font-extrabold text-amber-700">0</div>
+                        <div class="text-[11px] font-semibold text-amber-600">Mejor racha</div>
                     </div>
                 </div>
 
-                <!-- Lista de preguntas falladas con scroll interno controlado -->
-                <div id="wrong-review-section" class="hidden flex-1 min-h-0 flex flex-col text-left mt-2 pt-2 border-t border-slate-100">
-                    <h4 class="shrink-0 text-[10px] font-extrabold uppercase tracking-wider text-rose-600 mb-1.5">
+                <!-- Lista de preguntas falladas para revisar -->
+                <div id="wrong-review-section" class="hidden text-left mt-5 pt-5 border-t border-slate-100">
+                    <h4 class="text-xs font-extrabold uppercase tracking-wider text-rose-600 mb-3">
                         📌 Preguntas para repasar (<span id="wrong-count-label">0</span>):
                     </h4>
-                    <div id="wrong-list" class="flex-1 min-h-0 flex flex-col gap-1.5 overflow-y-auto custom-scroll pr-1">
+                    <div id="wrong-list" class="flex flex-col gap-2.5 max-h-60 overflow-y-auto custom-scroll pr-1">
                         <!-- Se rellena con los fallos -->
                     </div>
                 </div>
             </div>
 
-            <!-- Botones de acción final compactos -->
-            <div class="shrink-0 flex flex-col gap-1.5">
-                <button id="btn-retry-wrong" onclick="retryWrongQuestions()" class="hidden btn-press w-full py-2.5 px-4 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-1.5">
+            <!-- Botones de acción final -->
+            <div class="flex flex-col gap-2.5">
+                <button id="btn-retry-wrong" onclick="retryWrongQuestions()" class="hidden btn-press w-full py-3.5 px-5 rounded-2xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-sm sm:text-base shadow-md flex items-center justify-center gap-2">
                     <span>🔄</span>
                     <span>Repasar solo las falladas</span>
                 </button>
 
-                <div class="grid grid-cols-2 gap-1.5">
-                    <button onclick="startQuiz()" class="btn-press w-full py-2.5 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-1.5">
-                        <span>🎲</span>
-                        <span>Repetir test</span>
-                    </button>
+                <button onclick="startQuiz()" class="btn-press w-full py-3.5 px-5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm sm:text-base shadow-md flex items-center justify-center gap-2">
+                    <span>🎲</span>
+                    <span>Volver a jugar (preguntas mezcladas)</span>
+                </button>
 
-                    <button onclick="goHome()" class="btn-press w-full py-2.5 px-3 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5">
-                        <span>🏠</span>
-                        <span>Inicio</span>
-                    </button>
-                </div>
+                <button onclick="goHome()" class="btn-press w-full py-3 px-5 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold text-sm flex items-center justify-center gap-2">
+                    <span>🏠</span>
+                    <span>Cambiar tema o idioma</span>
+                </button>
             </div>
         </section>
+
+        <!-- Pie de página discreto -->
+        <footer class="text-center text-[11px] text-slate-400 mt-4 pb-1">
+            Unidad: La Restauración, II República, Guerra Civil, Dictadura y Arte Moderno
+        </footer>
     </div>
 
     <!-- =========================================================
@@ -406,19 +387,541 @@
          LÓGICA JAVASCRIPT Y BANCO DE 30 PREGUNTAS
     ========================================================== -->
     <script>
-        // Definición de temas disponibles (etiquetas cortas para grid 2x3 sin scroll)
+        // Definición de temas disponibles
         const TOPICS = [
-            { id: 'all', label: 'Todos los temas', icon: '📚' },
-            { id: 'restoration', label: 'Restauración', icon: '👑' },
-            { id: 'modernisation', label: 'Modernización', icon: '🏭' },
-            { id: 'republic', label: 'II República', icon: '🗳️' },
-            { id: 'civilwar', label: 'Guerra y Franco', icon: '⚔️' },
-            { id: 'art', label: 'Arte Moderno', icon: '🎨' }
+            { id: 'all', label: 'Todos los temas (Examen completo)', icon: '📚' },
+            { id: 'restoration', label: '1. La Restauración y Alfonso XIII (1875–1931)', icon: '👑' },
+            { id: 'modernisation', label: '2. Modernización y Clases Sociales', icon: '🏭' },
+            { id: 'republic', label: '3. La Segunda República (1931–1936)', icon: '🗳️' },
+            { id: 'civilwar', label: '4. Guerra Civil y Dictadura de Franco (1936–1975)', icon: '⚔️' },
+            { id: 'art', label: '5. Arte Moderno (Picasso, Dalí y Gaudí)', icon: '🎨' }
         ];
 
         // Banco completo de 30 preguntas fieles a las páginas del libro
-// ... existing code ... -->
-        // Renderizar la lista de temas seleccionables en grid compacto de 2 columnas
+        const QUESTIONS_DB = [
+            // --- TEMA 1: LA RESTAURACIÓN (6 preguntas) ---
+            {
+                id: 1,
+                topic: 'restoration',
+                topicLabel: 'La Restauración',
+                q_en: 'Which royal dynasty returned to power in Spain during the Restoration in 1875?',
+                opts_en: ['The Bourbon dynasty', 'The Habsburg dynasty', 'The Bonaparte dynasty', 'The Savoy dynasty'],
+                q_es: '¿Qué dinastía real regresó al poder en España durante la Restauración en 1875?',
+                opts_es: ['La dinastía de los Borbones', 'La dinastía de los Austrias', 'La dinastía Bonaparte', 'La dinastía de Saboya'],
+                correct: 0,
+                explanation: 'La Restauración supuso el regreso de la dinastía de los Borbones al trono español con Alfonso XII tras la Primera República.'
+            },
+            {
+                id: 2,
+                topic: 'restoration',
+                topicLabel: 'La Restauración',
+                q_en: 'Who ruled as regent from 1885 until 1902 because Alfonso XIII was still a child?',
+                opts_en: ['His mother, María Cristina', 'Isabel II', 'Antonio Cánovas del Castillo', 'Miguel Primo de Rivera'],
+                q_es: '¿Quién gobernó como regente desde 1885 hasta 1902 porque Alfonso XIII aún era un niño?',
+                opts_es: ['Su madre, María Cristina', 'Isabel II', 'Antonio Cánovas del Castillo', 'Miguel Primo de Rivera'],
+                correct: 0,
+                explanation: 'Alfonso XII murió con solo 27 años en 1885. Su hijo Alfonso XIII nació siendo rey, pero su madre María Cristina actuó como regente hasta que cumplió 16 años en 1902.'
+            },
+            {
+                id: 3,
+                topic: 'restoration',
+                topicLabel: 'La Restauración',
+                q_en: 'What was the "turno pacífico" created by Antonio Cánovas del Castillo?',
+                opts_en: [
+                    'A system that decided the result of elections in advance',
+                    'A peace treaty signed with the United States in 1898',
+                    'A democratic law giving women the right to vote',
+                    'A military alliance between Spain and Germany'
+                ],
+                q_es: '¿Qué era el «turno pacífico» creado por Antonio Cánovas del Castillo?',
+                opts_es: [
+                    'Un sistema político que decidía de antemano el resultado de las elecciones',
+                    'Un tratado de paz firmado con Estados Unidos en 1898',
+                    'Una ley democrática que dio el voto a las mujeres',
+                    'Una alianza militar entre España y Alemania'
+                ],
+                correct: 0,
+                explanation: 'El «turno pacífico» daba estabilidad política alternando dos partidos en el gobierno, pero a costa de amañar los resultados electorales.'
+            },
+            {
+                id: 4,
+                topic: 'restoration',
+                topicLabel: 'La Restauración',
+                q_en: 'Which overseas territories did Spain lose in the "Crisis of \'98" after a short war with the United States?',
+                opts_en: [
+                    'Cuba, Puerto Rico and the Philippines',
+                    'Mexico, Peru and Argentina',
+                    'Morocco, Cuba and Brazil',
+                    'Philippines, Canary Islands and Cuba'
+                ],
+                q_es: '¿Qué territorios de ultramar perdió España en la «Crisis del 98» tras una breve guerra con Estados Unidos?',
+                opts_es: [
+                    'Cuba, Puerto Rico y Filipinas',
+                    'México, Perú y Argentina',
+                    'Marruecos, Cuba y Brasil',
+                    'Filipinas, Islas Canarias y Cuba'
+                ],
+                correct: 0,
+                explanation: 'En 1898 España perdió sus últimas colonias de ultramar (Cuba, Puerto Rico y Filipinas), provocando una fuerte crisis moral y pesimismo.'
+            },
+            {
+                id: 5,
+                topic: 'restoration',
+                topicLabel: 'La Restauración',
+                q_en: 'Which writers belonged to the Generation of \'98, who wrote critically about Spain\'s politics?',
+                opts_en: [
+                    'Pío Baroja, Miguel de Unamuno and Antonio Machado',
+                    'Pablo Picasso, Salvador Dalí and Antoni Gaudí',
+                    'Francisco Franco and Miguel Primo de Rivera',
+                    'Antonio Cánovas and Alfonso XII'
+                ],
+                q_es: '¿Qué escritores pertenecieron a la Generación del 98 y escribieron de forma crítica sobre la política española?',
+                opts_es: [
+                    'Pío Baroja, Miguel de Unamuno y Antonio Machado',
+                    'Pablo Picasso, Salvador Dalí y Antoni Gaudí',
+                    'Francisco Franco y Miguel Primo de Rivera',
+                    'Antonio Cánovas y Alfonso XII'
+                ],
+                correct: 0,
+                explanation: 'Pío Baroja, Miguel de Unamuno y Antonio Machado fueron figuras clave de la Generación del 98 (junto a otros autores influyentes como Benito Pérez Galdós).'
+            },
+            {
+                id: 6,
+                topic: 'restoration',
+                topicLabel: 'La Restauración',
+                q_en: 'Who led a successful military coup in 1923 and established a dictatorship supported by Alfonso XIII?',
+                opts_en: ['Miguel Primo de Rivera', 'Francisco Franco', 'Antonio Cánovas del Castillo', 'Benito Pérez Galdós'],
+                q_es: '¿Quién lideró un golpe militar en 1923 e instauró una dictadura apoyada por Alfonso XIII?',
+                opts_es: ['Miguel Primo de Rivera', 'Francisco Franco', 'Antonio Cánovas del Castillo', 'Benito Pérez Galdós'],
+                correct: 0,
+                explanation: 'En 1923, el general Miguel Primo de Rivera dio un golpe de Estado y gobernó como dictador durante siete años con el respaldo del rey Alfonso XIII.'
+            },
+
+            // --- TEMA 2: MODERNIZACIÓN Y SOCIEDAD (5 preguntas) ---
+            {
+                id: 7,
+                topic: 'modernisation',
+                topicLabel: 'Modernización',
+                q_en: 'What does "modernisation" mean in 19th- and 20th-century Spain?',
+                opts_en: [
+                    'Moving from traditional rural agriculture to an industrial, urban life',
+                    'Closing all factories to return to farming',
+                    'Giving absolute power back to feudal lords',
+                    'Stopping the construction of railways'
+                ],
+                q_es: '¿Qué significa la «modernización» en la España de los siglos XIX y XX?',
+                opts_es: [
+                    'Pasar de la agricultura rural tradicional a una vida industrial y urbana',
+                    'Cerrar todas las fábricas para volver al campo',
+                    'Devolver el poder absoluto a los señores feudales',
+                    'Frenar la construcción del ferrocarril'
+                ],
+                correct: 0,
+                explanation: 'La modernización supuso el traslado de población del campo a las ciudades y el paso del trabajo agrario al trabajo en fábricas, impulsado por el ferrocarril.'
+            },
+            {
+                id: 8,
+                topic: 'modernisation',
+                topicLabel: 'Modernización',
+                q_en: 'Which new wealthy group joined the nobility in the Upper Class thanks to factories and banks?',
+                opts_en: ['The bourgeoisie', 'The working class', 'The peasantry', 'The clergy'],
+                q_es: '¿Qué nuevo grupo adinerado se unió a la nobleza en la clase alta gracias a las fábricas y los bancos?',
+                opts_es: ['La burguesía', 'La clase obrera', 'El campesinado', 'El clero'],
+                correct: 0,
+                explanation: 'La burguesía (bourgeoisie) estaba formada por ricos empresarios, dueños de fábricas y banqueros que alcanzaron la clase alta por el éxito de sus negocios.'
+            },
+            {
+                id: 9,
+                topic: 'modernisation',
+                topicLabel: 'Modernización',
+                q_en: 'Who belonged to the Middle Class in modern capitalist society?',
+                opts_en: [
+                    'Professionals such as lawyers, doctors and small business owners',
+                    'Factory workers and agricultural labourers',
+                    'Kings, queens and wealthy bankers',
+                    'Only military generals'
+                ],
+                q_es: '¿Quiénes formaban parte de la clase media en la sociedad capitalista moderna?',
+                opts_es: [
+                    'Profesionales como abogados, médicos y pequeños empresarios',
+                    'Obreros de fábricas y jornaleros del campo',
+                    'Reyes, reinas y grandes banqueros',
+                    'Únicamente generales del ejército'
+                ],
+                correct: 0,
+                explanation: 'La clase media tenía menos riqueza que la clase alta e incluía profesionales liberales (médicos, abogados) y pequeños comerciantes.'
+            },
+            {
+                id: 10,
+                topic: 'modernisation',
+                topicLabel: 'Modernización',
+                q_en: 'What was the biggest social class in modern society, working long hours for very low wages?',
+                opts_en: ['The working class', 'The upper class', 'The bourgeoisie', 'The middle class'],
+                q_es: '¿Cuál era la clase social más numerosa, que trabajaba largas jornadas por salarios muy bajos?',
+                opts_es: ['La clase obrera', 'La clase alta', 'La burguesía', 'La clase media'],
+                correct: 0,
+                explanation: 'La clase obrera (working class), formada por obreros industriales y trabajadores agrícolas, era el grupo más numeroso y sufría duras condiciones laborales.'
+            },
+            {
+                id: 11,
+                topic: 'modernisation',
+                topicLabel: 'Modernización',
+                q_en: 'What did the working class form during the "labour movement" to protect themselves and improve conditions?',
+                opts_en: ['Unions', 'Royal academies', 'Political monarchies', 'Censorship offices'],
+                q_es: '¿Qué formó la clase trabajadora durante el «movimiento obrero» para protegerse y mejorar sus condiciones?',
+                opts_es: ['Sindicatos', 'Academias reales', 'Monarquías parlamentarias', 'Oficinas de censura'],
+                correct: 0,
+                explanation: 'Los trabajadores se agruparon formando sindicatos (unions) para defender sus derechos y exigir mejores salarios y jornadas.'
+            },
+
+            // --- TEMA 3: LA SEGUNDA REPÚBLICA (6 preguntas) ---
+            {
+                id: 12,
+                topic: 'republic',
+                topicLabel: 'Segunda República',
+                q_en: 'When did Spain become a republic again (the Second Republic) after Alfonso XIII left the country?',
+                opts_en: ['14 April 1931', '1 April 1939', '18 July 1936', '12 October 1898'],
+                q_es: '¿Cuándo volvió España a convertirse en república (Segunda República) tras la salida de Alfonso XIII?',
+                opts_es: ['El 14 de abril de 1931', 'El 1 de abril de 1939', 'El 18 de julio de 1936', 'El 12 de octubre de 1898'],
+                correct: 0,
+                explanation: 'Tras ganar los republicanos en las elecciones municipales, Alfonso XIII abandonó España y el 14 de abril de 1931 se proclamó la Segunda República.'
+            },
+            {
+                id: 13,
+                topic: 'republic',
+                topicLabel: 'Segunda República',
+                q_en: 'Which historic right did the Constitution of 1931 grant for the first time in Spain?',
+                opts_en: [
+                    'The right to vote for both men and women',
+                    'The right of the king to abolish laws',
+                    'Mandatory religious education in all schools',
+                    'Total censorship of newspapers'
+                ],
+                q_es: '¿Qué derecho histórico concedió por primera vez en España la Constitución de 1931?',
+                opts_es: [
+                    'El derecho al voto tanto para hombres como para mujeres',
+                    'El derecho del rey a abolir leyes',
+                    'La enseñanza religiosa obligatoria en todas las escuelas',
+                    'La censura total de los periódicos'
+                ],
+                correct: 0,
+                explanation: 'La Constitución de 1931 reconoció por primera vez el sufragio universal femenino, permitiendo votar tanto a hombres como a mujeres.'
+            },
+            {
+                id: 14,
+                topic: 'republic',
+                topicLabel: 'Segunda República',
+                q_en: 'What did the Constitution of 1931 establish regarding the Catholic Church?',
+                opts_en: [
+                    'It separated the Church from the government and took away its privileges',
+                    'It made the Church the head of the government',
+                    'It banned all churches from existing',
+                    'It gave more land to the Church'
+                ],
+                q_es: '¿Qué estableció la Constitución de 1931 respecto a la Iglesia?',
+                opts_es: [
+                    'Separó la Iglesia del Estado y le retiró sus privilegios',
+                    'Puso a la Iglesia al frente del gobierno',
+                    'Prohibió la existencia de cualquier iglesia',
+                    'Entregó más tierras a la Iglesia'
+                ],
+                correct: 0,
+                explanation: 'La Constitución de 1931 declaró el Estado aconfesional, separando la Iglesia del gobierno y eliminando sus privilegios.'
+            },
+            {
+                id: 15,
+                topic: 'republic',
+                topicLabel: 'Segunda República',
+                q_en: 'What were the main education reforms during the first years of the Second Republic?',
+                opts_en: [
+                    'Building thousands of new schools and removing religion as a mandatory subject',
+                    'Closing public schools to save money',
+                    'Making religion the only mandatory subject',
+                    'Banning girls from attending school'
+                ],
+                q_es: '¿Cuáles fueron las principales reformas educativas en los primeros años de la Segunda República?',
+                opts_es: [
+                    'Construir miles de escuelas nuevas y eliminar la religión como asignatura obligatoria',
+                    'Cerrar las escuelas públicas para ahorrar dinero',
+                    'Hacer que la religión fuese la única asignatura obligatoria',
+                    'Prohibir que las niñas asistieran a la escuela'
+                ],
+                correct: 0,
+                explanation: 'El gobierno republicano impulsó la educación pública construyendo miles de escuelas y suprimiendo la obligatoriedad de la asignatura de religión.'
+            },
+            {
+                id: 16,
+                topic: 'republic',
+                topicLabel: 'Segunda República',
+                q_en: 'What was the objective of the Second Republic\'s land reforms?',
+                opts_en: [
+                    'To give farm workers the opportunity to purchase land for themselves',
+                    'To take land away from all farmers',
+                    'To turn farmland into factories',
+                    'To sell Spanish land to foreign countries'
+                ],
+                q_es: '¿Cuál era el objetivo de las reformas agrarias de la Segunda República?',
+                opts_es: [
+                    'Dar a los trabajadores del campo la oportunidad de comprar tierras para sí mismos',
+                    'Quitar todas las tierras a los campesinos',
+                    'Convertir los campos de cultivo en fábricas',
+                    'Vender tierras españolas a otros países'
+                ],
+                correct: 0,
+                explanation: 'La reforma agraria buscaba repartir tierras para que los jornaleros y trabajadores agrícolas pudieran adquirir parcelas propias.'
+            },
+            {
+                id: 17,
+                topic: 'republic',
+                topicLabel: 'Segunda República',
+                q_en: 'What happened on 17 and 18 July 1936?',
+                opts_en: [
+                    'A military uprising against the Republic led by generals including Francisco Franco',
+                    'The end of the Spanish Civil War',
+                    'The coronation of Alfonso XIII',
+                    'The approval of the Constitution of 1931'
+                ],
+                q_es: '¿Qué ocurrió los días 17 y 18 de julio de 1936?',
+                opts_es: [
+                    'Un alzamiento militar contra la República liderado por generales como Francisco Franco',
+                    'El final de la Guerra Civil Española',
+                    'La coronación de Alfonso XIII',
+                    'La aprobación de la Constitución de 1931'
+                ],
+                correct: 0,
+                explanation: 'El 17 y 18 de julio de 1936 se produjo un golpe militar contra la República. Al no triunfar en todo el país, España quedó dividida y comenzó la Guerra Civil.'
+            },
+
+            // --- TEMA 4: GUERRA CIVIL Y DICTADURA DE FRANCO (8 preguntas) ---
+            {
+                id: 18,
+                topic: 'civilwar',
+                topicLabel: 'Guerra Civil y Dictadura',
+                q_en: 'Which two sides fought against each other in the Spanish Civil War?',
+                opts_en: [
+                    'The Nationalists (Franco) and the Republicans (Second Republic)',
+                    'The Bourbons and the Habsburgs',
+                    'Spain and the United States',
+                    'The bourgeoisie and the nobility'
+                ],
+                q_es: '¿Qué dos bandos se enfrentaron en la Guerra Civil Española?',
+                opts_es: [
+                    'Los nacionales (Franco) y los republicanos (Segunda República)',
+                    'Los Borbones y los Austrias',
+                    'España y Estados Unidos',
+                    'La burguesía y la nobleza'
+                ],
+                correct: 0,
+                explanation: 'España quedó dividida entre los nacionales (que apoyaban a Francisco Franco) y los republicanos (leales al gobierno de la Segunda República).'
+            },
+            {
+                id: 19,
+                topic: 'civilwar',
+                topicLabel: 'Guerra Civil y Dictadura',
+                q_en: 'When did the Spanish Civil War end after the Nationalists took control of Madrid and Barcelona?',
+                opts_en: ['1 April 1939', '14 April 1931', '18 July 1936', '20 November 1975'],
+                q_es: '¿Cuándo terminó la Guerra Civil Española tras tomar los nacionales Madrid y Barcelona?',
+                opts_es: ['El 1 de abril de 1939', 'El 14 de abril de 1931', 'El 18 de julio de 1936', 'El 20 de noviembre de 1975'],
+                correct: 0,
+                explanation: 'La guerra terminó el 1 de abril de 1939 con la victoria del bando nacional tras ocupar Madrid y Barcelona, dejando cientos de miles de muertos.'
+            },
+            {
+                id: 20,
+                topic: 'civilwar',
+                topicLabel: 'Guerra Civil y Dictadura',
+                q_en: 'Which foreign countries sent soldiers, weapons and aircraft to help the Nationalists win the Civil War?',
+                opts_en: ['Nazi Germany and Fascist Italy', 'The Soviet Union and France', 'The United States and Britain', 'Portugal and Mexico'],
+                q_es: '¿Qué países extranjeros enviaron soldados, armas y aviones para ayudar a los nacionales a ganar la guerra?',
+                opts_es: ['La Alemania nazi y la Italia fascista', 'La Unión Soviética y Francia', 'Estados Unidos y Gran Bretaña', 'Portugal y México'],
+                correct: 0,
+                explanation: 'Alemania e Italia apoyaron decisivamente a Franco con tropas y armamento, mientras que solo la Unión Soviética ayudó a los republicanos.'
+            },
+            {
+                id: 21,
+                topic: 'civilwar',
+                topicLabel: 'Guerra Civil y Dictadura',
+                q_en: 'Besides military power and foreign aid, what other key advantage helped the Nationalists win?',
+                opts_en: [
+                    'They were united behind one general and occupied the main food-producing areas',
+                    'They had support from the United States',
+                    'They never used military strategy',
+                    'The Republicans had much better weapons'
+                ],
+                q_es: 'Además del poder militar y la ayuda extranjera, ¿qué otra ventaja clave ayudó a ganar a los nacionales?',
+                opts_es: [
+                    'Estaban unidos bajo un solo mando y controlaban las principales zonas productoras de alimentos',
+                    'Contaban con el apoyo de Estados Unidos',
+                    'No necesitaron estrategia militar',
+                    'Los republicanos tenían mucho mejor armamento'
+                ],
+                correct: 0,
+                explanation: 'Los nacionales tuvieron unidad de mando (frente a la división interna republicana) y ocuparon las principales zonas agrícolas del país.'
+            },
+            {
+                id: 22,
+                topic: 'civilwar',
+                topicLabel: 'Guerra Civil y Dictadura',
+                q_en: 'How long did Francisco Franco\'s dictatorship last?',
+                opts_en: [
+                    'From 1939 until his death in 1975',
+                    'From 1931 until 1936',
+                    'From 1923 until 1930',
+                    'From 1936 until 1939'
+                ],
+                q_es: '¿Cuánto tiempo duró la dictadura de Francisco Franco?',
+                opts_es: [
+                    'Desde 1939 hasta su muerte en 1975',
+                    'Desde 1931 hasta 1936',
+                    'Desde 1923 hasta 1930',
+                    'Desde 1936 hasta 1939'
+                ],
+                correct: 0,
+                explanation: 'Tras abolir la Constitución, Franco gobernó como dictador con poder absoluto durante 36 años, desde 1939 hasta su fallecimiento en 1975.'
+            },
+            {
+                id: 23,
+                topic: 'civilwar',
+                topicLabel: 'Guerra Civil y Dictadura',
+                q_en: 'How were civil liberties limited during Franco\'s dictatorship?',
+                opts_en: [
+                    'Press, books and films were censored; political parties and unions were made illegal',
+                    'Everyone could freely publish criticism of Franco',
+                    'All political parties were allowed to compete in elections',
+                    'Regional languages were promoted in all schools'
+                ],
+                q_es: '¿Cómo se limitaron las libertades civiles durante la dictadura de Franco?',
+                opts_es: [
+                    'Se censuraron prensa, libros y cine; los partidos políticos y sindicatos fueron ilegalizados',
+                    'Cualquiera podía publicar críticas contra Franco libremente',
+                    'Todos los partidos políticos podían presentarse a elecciones',
+                    'Se promovieron las lenguas regionales en todas las escuelas'
+                ],
+                correct: 0,
+                explanation: 'Durante el franquismo se impuso una fuerte censura cultural, se ilegalizaron partidos y sindicatos, y se reprimió a los opositores.'
+            },
+            {
+                id: 24,
+                topic: 'civilwar',
+                topicLabel: 'Guerra Civil y Dictadura',
+                q_en: 'What happened to regional traditions and languages (such as Catalan, Basque or Galician) under Franco?',
+                opts_en: ['They were restricted', 'They became the only official languages', 'They were protected by a new constitution', 'They were unaffected'],
+                q_es: '¿Qué ocurrió con las tradiciones y lenguas regionales durante el régimen de Franco?',
+                opts_es: ['Fueron restringidas', 'Se convirtieron en las únicas lenguas oficiales', 'Fueron protegidas por una nueva constitución', 'No sufrieron ningún cambio'],
+                correct: 0,
+                explanation: 'La dictadura restringió el uso público de las lenguas y tradiciones regionales para imponer una identidad nacional única.'
+            },
+            {
+                id: 25,
+                topic: 'civilwar',
+                topicLabel: 'Guerra Civil y Dictadura',
+                q_en: 'Why did food become scarce and rationing occur in the early years of Franco\'s dictatorship?',
+                opts_en: [
+                    'Franco enacted policies of autarky and did not want to trade with other countries',
+                    'Spain exported all its food to the United States',
+                    'There were no farms left in Spain',
+                    'People stopped eating bread and vegetables'
+                ],
+                q_es: '¿Por qué escasearon los alimentos y hubo racionamiento en los primeros años de la dictadura?',
+                opts_es: [
+                    'Franco aplicó políticas de autarquía y evitó comerciar con otros países',
+                    'España exportó toda su comida a Estados Unidos',
+                    'No quedaban granjas en España',
+                    'La población dejó de consumir productos básicos'
+                ],
+                correct: 0,
+                explanation: 'El aislamiento internacional y las políticas de autarquía (autosuficiencia económica) provocaron una grave crisis económica, escasez y racionamiento.'
+            },
+
+            // --- TEMA 5: ARTE MODERNO (5 preguntas) ---
+            {
+                id: 26,
+                topic: 'art',
+                topicLabel: 'Arte Moderno',
+                q_en: 'How did the focus of art change in the 20th century compared to the past?',
+                opts_en: [
+                    'It shifted from portraits of royalty and religious scenes towards the artist\'s personal experience and expression',
+                    'Artists only painted portraits of kings and queens',
+                    'Artists stopped using colours and shapes',
+                    'Only religious paintings were allowed'
+                ],
+                q_es: '¿Cómo cambió el enfoque del arte en el siglo XX respecto al pasado?',
+                opts_es: [
+                    'Pasó de retratos de la realeza y escenas religiosas a la experiencia y expresión personal del artista',
+                    'Los artistas solo pintaban retratos de reyes y reinas',
+                    'Se dejó de utilizar el color y las formas',
+                    'Solo se permitían pinturas religiosas'
+                ],
+                correct: 0,
+                explanation: 'En el siglo XX el arte moderno dejó atrás el encargo tradicional religioso o monárquico para centrarse en la visión y emoción personal del artista.'
+            },
+            {
+                id: 27,
+                topic: 'art',
+                topicLabel: 'Arte Moderno',
+                q_en: 'Which art style is Pablo Picasso famous for, where objects are painted from different angles using geometrical shapes?',
+                opts_en: ['Cubism', 'Surrealism', 'Modernism', 'Romanticism'],
+                q_es: '¿Por qué estilo artístico es famoso Pablo Picasso, en el que pinta objetos desde distintos ángulos con formas geométricas?',
+                opts_es: ['Cubismo', 'Surrealismo', 'Modernismo', 'Romanticismo'],
+                correct: 0,
+                explanation: 'En el Cubismo (Cubism), Picasso descompone figuras y objetos en formas geométricas mostrando varios ángulos a la vez (como de frente y de perfil).'
+            },
+            {
+                id: 28,
+                topic: 'art',
+                topicLabel: 'Arte Moderno',
+                q_en: 'Which style did Salvador Dalí represent, painting dreams and subconscious thoughts with strange combinations?',
+                opts_en: ['Surrealism', 'Cubism', 'Gothic architecture', 'Realism'],
+                q_es: '¿Qué estilo representó Salvador Dalí, pintando sueños y pensamientos del subconsciente con combinaciones extrañas?',
+                opts_es: ['Surrealismo', 'Cubismo', 'Arquitectura gótica', 'Realismo'],
+                correct: 0,
+                explanation: 'Salvador Dalí es el máximo exponente del Surrealismo (Surrealism), con obras oníricas y escenas insólitas nacidas del mundo de los sueños.'
+            },
+            {
+                id: 29,
+                topic: 'art',
+                topicLabel: 'Arte Moderno',
+                q_en: 'Who made Modernist architecture famous in Spain using curved, wavy shapes inspired by nature?',
+                opts_en: ['Antoni Gaudí', 'Pablo Picasso', 'Salvador Dalí', 'Miguel de Unamuno'],
+                q_es: '¿Quién hizo famosa la arquitectura modernista en España usando formas curvas y onduladas inspiradas en la naturaleza?',
+                opts_es: ['Antoni Gaudí', 'Pablo Picasso', 'Salvador Dalí', 'Miguel de Unamuno'],
+                correct: 0,
+                explanation: 'Antoni Gaudí revolucionó la arquitectura modernista con formas orgánicas, curvas y onduladas inspiradas directamente en la naturaleza.'
+            },
+            {
+                id: 30,
+                topic: 'art',
+                topicLabel: 'Arte Moderno',
+                q_en: 'Which famous anti-war painting by Pablo Picasso reflects the tragedy of the Spanish Civil War?',
+                opts_en: ['Guernica', 'The Persistence of Memory', 'Las Meninas', 'The Sagrada Familia'],
+                q_es: '¿Qué famosa pintura antibelicista de Pablo Picasso refleja el horror y el simbolismo de la Guerra Civil Española?',
+                opts_es: ['El Guernica', 'La persistencia de la memoria', 'Las Meninas', 'La Sagrada Familia'],
+                correct: 0,
+                explanation: 'El «Guernica» de Pablo Picasso (que aparece en la página 66 del libro) es una obra maestra llena de simbolismo sobre el sufrimiento causado por la Guerra Civil.'
+            }
+        ];
+
+        // Estado global de la aplicación
+        let state = {
+            lang: 'bilingual',      // 'bilingual' | 'es'
+            gameMode: 'practice',   // 'practice' | 'survival'
+            selectedTopic: 'all',
+            activeQuestions: [],
+            currentIndex: 0,
+            score: 0,
+            streak: 0,
+            bestStreak: 0,
+            lives: 3,
+            answered: false,
+            wrongAnswers: []
+        };
+
+        // Inicialización al cargar la página
+        window.onload = function () {
+            renderTopicSelector();
+            updateStartButtonText();
+        };
+
+        // Renderizar la lista de temas seleccionables en el inicio
         function renderTopicSelector() {
             const container = document.getElementById('topic-list');
             container.innerHTML = '';
@@ -432,18 +935,18 @@
                 const btn = document.createElement('button');
                 btn.type = 'button';
                 btn.onclick = () => selectTopic(topic.id);
-                btn.className = `btn-press w-full flex items-center justify-between px-2.5 py-2 rounded-xl border-2 text-left transition ${
+                btn.className = `btn-press w-full flex items-center justify-between p-3 rounded-2xl border-2 text-left transition ${
                     isSelected
                         ? 'border-indigo-600 bg-indigo-50/70 text-indigo-950 font-bold'
                         : 'border-slate-200 bg-white hover:border-slate-300 text-slate-700 font-medium'
                 }`;
 
                 btn.innerHTML = `
-                    <div class="flex items-center gap-1.5 min-w-0">
-                        <span class="text-xs shrink-0">${topic.icon}</span>
-                        <span class="text-[11px] sm:text-xs truncate">${topic.label}</span>
+                    <div class="flex items-center gap-2.5">
+                        <span class="text-base">${topic.icon}</span>
+                        <span class="text-xs sm:text-sm">${topic.label}</span>
                     </div>
-                    <span class="shrink-0 text-[10px] font-bold px-1.5 py-0.5 rounded-md ml-1 ${
+                    <span class="text-xs font-bold px-2 py-0.5 rounded-lg ${
                         isSelected ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-500'
                     }">${count}</span>
                 `;
@@ -458,20 +961,20 @@
             const btnEs = document.getElementById('lang-es');
 
             if (lang === 'bilingual') {
-                btnBi.className = 'btn-press text-left px-2.5 py-2 rounded-xl border-2 border-indigo-600 bg-indigo-50/70 transition';
-                btnBi.querySelector('span:last-child').className = 'w-3.5 h-3.5 rounded-full bg-indigo-600 flex items-center justify-center text-white text-[9px]';
+                btnBi.className = 'btn-press text-left p-3.5 rounded-2xl border-2 border-indigo-600 bg-indigo-50/70 transition';
+                btnBi.querySelector('span:last-child').className = 'w-4 h-4 rounded-full bg-indigo-600 flex items-center justify-center text-white text-[10px]';
                 btnBi.querySelector('span:last-child').textContent = '✓';
 
-                btnEs.className = 'btn-press text-left px-2.5 py-2 rounded-xl border-2 border-slate-200 bg-white hover:border-slate-300 transition';
-                btnEs.querySelector('span:last-child').className = 'w-3.5 h-3.5 rounded-full border border-slate-300';
+                btnEs.className = 'btn-press text-left p-3.5 rounded-2xl border-2 border-slate-200 bg-white hover:border-slate-300 transition';
+                btnEs.querySelector('span:last-child').className = 'w-4 h-4 rounded-full border border-slate-300';
                 btnEs.querySelector('span:last-child').textContent = '';
             } else {
-                btnEs.className = 'btn-press text-left px-2.5 py-2 rounded-xl border-2 border-indigo-600 bg-indigo-50/70 transition';
-                btnEs.querySelector('span:last-child').className = 'w-3.5 h-3.5 rounded-full bg-indigo-600 flex items-center justify-center text-white text-[9px]';
+                btnEs.className = 'btn-press text-left p-3.5 rounded-2xl border-2 border-indigo-600 bg-indigo-50/70 transition';
+                btnEs.querySelector('span:last-child').className = 'w-4 h-4 rounded-full bg-indigo-600 flex items-center justify-center text-white text-[10px]';
                 btnEs.querySelector('span:last-child').textContent = '✓';
 
-                btnBi.className = 'btn-press text-left px-2.5 py-2 rounded-xl border-2 border-slate-200 bg-white hover:border-slate-300 transition';
-                btnBi.querySelector('span:last-child').className = 'w-3.5 h-3.5 rounded-full border border-slate-300';
+                btnBi.className = 'btn-press text-left p-3.5 rounded-2xl border-2 border-slate-200 bg-white hover:border-slate-300 transition';
+                btnBi.querySelector('span:last-child').className = 'w-4 h-4 rounded-full border border-slate-300';
                 btnBi.querySelector('span:last-child').textContent = '';
             }
         }
@@ -483,16 +986,74 @@
             const btnSurv = document.getElementById('mode-survival');
 
             if (mode === 'practice') {
-                btnPrac.className = 'btn-press px-2.5 py-1.5 rounded-xl border-2 border-indigo-600 bg-indigo-50/70 text-left flex items-center justify-between';
-                btnSurv.className = 'btn-press px-2.5 py-1.5 rounded-xl border-2 border-slate-200 bg-white text-left flex items-center justify-between';
+                btnPrac.className = 'btn-press p-3 rounded-2xl border-2 border-indigo-600 bg-indigo-50/70 text-left';
+                btnSurv.className = 'btn-press p-3 rounded-2xl border-2 border-slate-200 bg-white text-left';
             } else {
-                btnSurv.className = 'btn-press px-2.5 py-1.5 rounded-xl border-2 border-indigo-600 bg-indigo-50/70 text-left flex items-center justify-between';
-                btnPrac.className = 'btn-press px-2.5 py-1.5 rounded-xl border-2 border-slate-200 bg-white text-left flex items-center justify-between';
+                btnSurv.className = 'btn-press p-3 rounded-2xl border-2 border-indigo-600 bg-indigo-50/70 text-left';
+                btnPrac.className = 'btn-press p-3 rounded-2xl border-2 border-slate-200 bg-white text-left';
             }
         }
 
         // Selección de tema
-// ... existing code ... -->
+        function selectTopic(topicId) {
+            state.selectedTopic = topicId;
+            renderTopicSelector();
+            updateStartButtonText();
+        }
+
+        function updateStartButtonText() {
+            const count = state.selectedTopic === 'all'
+                ? QUESTIONS_DB.length
+                : QUESTIONS_DB.filter(q => q.topic === state.selectedTopic).length;
+            const label = state.selectedTopic === 'all' ? 'Empezar Test Completo' : 'Empezar Tema';
+            document.getElementById('start-btn-text').textContent = `${label} (${count} preguntas)`;
+        }
+
+        // Algoritmo Fisher-Yates para barajar arrays aleatoriamente
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // Iniciar una nueva partida
+        function startQuiz(customQuestions = null) {
+            let pool = customQuestions;
+            if (!pool) {
+                pool = state.selectedTopic === 'all'
+                    ? [...QUESTIONS_DB]
+                    : QUESTIONS_DB.filter(q => q.topic === state.selectedTopic);
+            }
+
+            // Barajar las preguntas y preparar opciones mezcladas manteniendo cuál es la correcta
+            state.activeQuestions = shuffleArray(pool).map(q => {
+                const isEn = state.lang === 'bilingual';
+                const rawOpts = isEn ? q.opts_en : q.opts_es;
+                const indexedOpts = rawOpts.map((text, idx) => ({
+                    text,
+                    isCorrect: idx === q.correct
+                }));
+                return {
+                    ...q,
+                    displayQuestion: isEn ? q.q_en : q.q_es,
+                    shuffledOptions: shuffleArray(indexedOpts)
+                };
+            });
+
+            state.currentIndex = 0;
+            state.score = 0;
+            state.streak = 0;
+            state.bestStreak = 0;
+            state.lives = 3;
+            state.wrongAnswers = [];
+
+            switchScreen('screen-quiz');
+            renderCurrentQuestion();
+        }
+
         // Renderizar la pregunta actual en pantalla
         function renderCurrentQuestion() {
             state.answered = false;
@@ -500,9 +1061,9 @@
             const total = state.activeQuestions.length;
 
             // Actualizar contadores superiores
-            document.getElementById('quiz-counter').textContent = `${state.currentIndex + 1} / ${total}`;
-            document.getElementById('streak-badge').textContent = `🔥 ${state.streak}`;
-            document.getElementById('score-badge').textContent = `⭐ ${state.score}`;
+            document.getElementById('quiz-counter').textContent = `Pregunta ${state.currentIndex + 1} / ${total}`;
+            document.getElementById('streak-badge').textContent = `🔥 Racha: ${state.streak}`;
+            document.getElementById('score-badge').textContent = `⭐ ${state.score} pts`;
 
             const livesBadge = document.getElementById('lives-badge');
             if (state.gameMode === 'survival') {
@@ -527,7 +1088,7 @@
             void card.offsetWidth;
             card.classList.add('animate-slide-up');
 
-            // Renderizar opciones compactas
+            // Renderizar opciones
             const optionsContainer = document.getElementById('options-container');
             optionsContainer.innerHTML = '';
             const letters = ['A', 'B', 'C', 'D'];
@@ -536,12 +1097,12 @@
                 const btn = document.createElement('button');
                 btn.type = 'button';
                 btn.onclick = () => handleAnswer(idx);
-                btn.className = 'option-btn compact-opt btn-press w-full text-left px-2.5 py-2 sm:p-3 rounded-xl border-2 border-slate-200 bg-slate-50/60 hover:bg-indigo-50/50 hover:border-indigo-300 flex items-center gap-2.5 transition';
+                btn.className = 'option-btn btn-press w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 border-slate-200 bg-slate-50/60 hover:bg-indigo-50/50 hover:border-indigo-300 flex items-start gap-3 transition';
                 btn.innerHTML = `
-                    <span class="opt-letter shrink-0 w-6 h-6 rounded-lg bg-white border border-slate-200 text-slate-700 font-extrabold text-[11px] flex items-center justify-center shadow-2xs">
+                    <span class="opt-letter shrink-0 w-7 h-7 rounded-xl bg-white border border-slate-200 text-slate-700 font-extrabold text-xs flex items-center justify-center mt-0.5 shadow-2xs">
                         ${letters[idx]}
                     </span>
-                    <span class="text-[0.86rem] sm:text-sm font-semibold text-slate-800 leading-snug">
+                    <span class="text-sm sm:text-base font-semibold text-slate-800 leading-snug">
                         ${opt.text}
                     </span>
                 `;
@@ -572,15 +1133,15 @@
                 const letterBadge = btn.querySelector('.opt-letter');
 
                 if (opt.isCorrect) {
-                    btn.className = 'option-btn compact-opt w-full text-left px-2.5 py-2 sm:p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50 flex items-center gap-2.5 animate-pop';
-                    letterBadge.className = 'opt-letter shrink-0 w-6 h-6 rounded-lg bg-emerald-500 text-white font-extrabold text-[11px] flex items-center justify-center';
+                    btn.className = 'option-btn w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50 flex items-start gap-3 animate-pop';
+                    letterBadge.className = 'opt-letter shrink-0 w-7 h-7 rounded-xl bg-emerald-500 text-white font-extrabold text-xs flex items-center justify-center mt-0.5';
                     letterBadge.textContent = '✓';
                 } else if (idx === selectedIndex && !opt.isCorrect) {
-                    btn.className = 'option-btn compact-opt w-full text-left px-2.5 py-2 sm:p-3 rounded-xl border-2 border-rose-500 bg-rose-50 flex items-center gap-2.5 animate-shake';
-                    letterBadge.className = 'opt-letter shrink-0 w-6 h-6 rounded-lg bg-rose-500 text-white font-extrabold text-[11px] flex items-center justify-center';
+                    btn.className = 'option-btn w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 border-rose-500 bg-rose-50 flex items-start gap-3 animate-shake';
+                    letterBadge.className = 'opt-letter shrink-0 w-7 h-7 rounded-xl bg-rose-500 text-white font-extrabold text-xs flex items-center justify-center mt-0.5';
                     letterBadge.textContent = '✕';
                 } else {
-                    btn.className = 'option-btn compact-opt w-full text-left px-2.5 py-2 sm:p-3 rounded-xl border-2 border-slate-100 bg-slate-50/40 opacity-55 flex items-center gap-2.5';
+                    btn.className = 'option-btn w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 border-slate-100 bg-slate-50/40 opacity-55 flex items-start gap-3';
                 }
             });
 
@@ -590,10 +1151,10 @@
                 const bonus = state.streak >= 3 ? 20 : 0;
                 state.score += (100 + bonus);
 
-                feedbackBox.className = 'shrink-0 mt-2 rounded-xl px-3 py-2 border border-emerald-200 bg-emerald-50/90 animate-slide-up max-h-24 overflow-y-auto custom-scroll';
-                feedbackTitle.className = 'flex items-center gap-1.5 font-extrabold text-xs mb-0.5 text-emerald-800';
+                feedbackBox.className = 'mt-5 rounded-2xl p-4 border-2 border-emerald-200 bg-emerald-50/80 animate-slide-up';
+                feedbackTitle.className = 'flex items-center gap-2 font-extrabold text-sm sm:text-base mb-1 text-emerald-800';
                 feedbackTitle.innerHTML = state.streak >= 3
-                    ? `<span>🎉 ¡Correcto!</span><span class="text-[10px] bg-amber-200 text-amber-900 px-1.5 py-0.2 rounded-full">🔥 x${state.streak}</span>`
+                    ? `<span>🎉 ¡Correcto!</span><span class="text-xs bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full">🔥 ¡Racha x${state.streak}!</span>`
                     : `<span>✅ ¡Muy bien! Respuesta correcta</span>`;
             } else {
                 state.streak = 0;
@@ -611,14 +1172,14 @@
                     explanation: q.explanation
                 });
 
-                feedbackBox.className = 'shrink-0 mt-2 rounded-xl px-3 py-2 border border-rose-200 bg-rose-50/90 animate-slide-up max-h-24 overflow-y-auto custom-scroll';
-                feedbackTitle.className = 'flex items-center gap-1.5 font-extrabold text-xs mb-0.5 text-rose-800';
-                feedbackTitle.innerHTML = `<span>❌ ¡Casi! Dato clave:</span>`;
+                feedbackBox.className = 'mt-5 rounded-2xl p-4 border-2 border-rose-200 bg-rose-50/80 animate-slide-up';
+                feedbackTitle.className = 'flex items-center gap-2 font-extrabold text-sm sm:text-base mb-1 text-rose-800';
+                feedbackTitle.innerHTML = `<span>❌ ¡Casi! Fíjate en el dato clave:</span>`;
             }
 
             // Actualizar contadores en tiempo real
-            document.getElementById('streak-badge').textContent = `🔥 ${state.streak}`;
-            document.getElementById('score-badge').textContent = `⭐ ${state.score}`;
+            document.getElementById('streak-badge').textContent = `🔥 Racha: ${state.streak}`;
+            document.getElementById('score-badge').textContent = `⭐ ${state.score} pts`;
 
             // Mostrar explicación en castellano
             feedbackExplanation.textContent = q.explanation;
